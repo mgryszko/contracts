@@ -6,6 +6,7 @@ plugins {
     id("io.spring.dependency-management") version "1.0.11.RELEASE"
     kotlin("jvm") version "1.4.31"
     kotlin("plugin.spring") version "1.4.31"
+    id("au.com.dius.pact") version "4.1.15"
 }
 
 repositories {
@@ -17,7 +18,10 @@ dependencies {
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+
     testImplementation("org.springframework.boot:spring-boot-starter-test")
+    testImplementation("ch.tutteli.atrium:atrium-fluent-en_GB:0.15.0")
+    testImplementation("au.com.dius.pact.consumer:junit5:4.1.15")
 }
 
 val kotlinOptions: org.jetbrains.kotlin.gradle.dsl.KotlinJvmOptions.() -> Unit = {
@@ -40,5 +44,11 @@ tasks.test {
             showStackTraces = true
             showStandardStreams = true
         }
+    }
+}
+
+pact {
+    publish {
+        pactBrokerUrl = "http://localhost:9292"
     }
 }
