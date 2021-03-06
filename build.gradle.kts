@@ -19,7 +19,10 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 
-    testImplementation("org.springframework.boot:spring-boot-starter-test")
+    testImplementation("org.springframework.boot:spring-boot-starter-test") {
+        exclude(module = "mockito-core")
+    }
+    testImplementation("com.ninja-squad:springmockk:3.0.1")
     testImplementation("ch.tutteli.atrium:atrium-fluent-en_GB:0.15.0")
     testImplementation("au.com.dius.pact.consumer:junit5:4.1.15")
     testImplementation("au.com.dius.pact.provider:junit5spring:4.1.15")
