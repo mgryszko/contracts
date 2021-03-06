@@ -22,6 +22,7 @@ dependencies {
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("ch.tutteli.atrium:atrium-fluent-en_GB:0.15.0")
     testImplementation("au.com.dius.pact.consumer:junit5:4.1.15")
+    testImplementation("au.com.dius.pact.provider:junit5spring:4.1.15")
 }
 
 val kotlinOptions: org.jetbrains.kotlin.gradle.dsl.KotlinJvmOptions.() -> Unit = {
@@ -45,6 +46,7 @@ tasks.test {
             showStandardStreams = true
         }
     }
+    systemProperties = mapOf("pact.verifier.publishResults" to true)
 }
 
 pact {
